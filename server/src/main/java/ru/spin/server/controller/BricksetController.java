@@ -64,7 +64,7 @@ public class BricksetController {
         return new ResponseEntity<>(bricksetCreated, HttpStatus.OK);
     }
 
-    @PostMapping("/{bricksetId}/updatebrickset")
+    @PostMapping("/{bricksetId}/update-brickset")
     public ResponseEntity<Object> updateBrickset(@PathVariable("bricksetId") String bricksetId,
                                                  @Valid @RequestBody BricksetDto bricksetDto,
                                                  BindingResult bindingResult,

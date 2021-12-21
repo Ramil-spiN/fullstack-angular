@@ -1,4 +1,5 @@
 import {Comment} from './Comment'
+
 export interface Brickset {
   id?: number;
   title: string;

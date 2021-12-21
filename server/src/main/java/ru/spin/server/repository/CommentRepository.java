@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Long> {
-    List<Comment> findAllByBrickset(Brickset brickset);
+    List<Comment> findAllByBricksetOrderByCreateDate(Brickset brickset);
 
     Comment findCommentByIdAndUserId(Long id, Long userId);
 }

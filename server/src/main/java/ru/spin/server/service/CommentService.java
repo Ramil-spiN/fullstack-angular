@@ -51,7 +51,7 @@ public class CommentService {
     public List<Comment> getAllCommentsForBrickset(Long bricksetId) {
         Brickset brickset = bricksetRepository.findById(bricksetId)
                 .orElseThrow(() -> new BricksetNotFoundException("Brickset not found"));
-        return commentRepository.findAllByBrickset(brickset);
+        return commentRepository.findAllByBricksetOrderByCreateDate(brickset);
     }
 
     public void deleteComment(Long id) {

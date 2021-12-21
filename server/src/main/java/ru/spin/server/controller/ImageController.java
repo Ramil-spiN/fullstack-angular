@@ -21,7 +21,7 @@ public class ImageController {
         this.imageService = imageService;
     }
 
-    @GetMapping("/profileImage")
+    @GetMapping("/profile-image")
     public ResponseEntity<ImageModel> getImageForUser(Principal principal) {
         ImageModel imageModel = imageService.getUserImage(principal);
         return ResponseEntity.ok(imageModel);
