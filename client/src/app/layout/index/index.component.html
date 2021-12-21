@@ -6,7 +6,10 @@
       <mat-card-subtitle>{{brickset.title}}</mat-card-subtitle>
     </mat-card-header>
     <img mat-card-image [src]="formatImage(brickset.image)" alt="brickset image">
-    <mat-card-subtitle align="start">Posted by {{brickset.username}}</mat-card-subtitle>
+    <mat-card-subtitle align="start">
+      Posted by {{brickset.username}}
+      <img *ngIf="brickset.isUserImageLoaded" mat-card-sm-image style="border-radius: 50%" [src]="formatImage(brickset.userImage)">
+    </mat-card-subtitle>
     <mat-card-content>
       <p>{{brickset.inventory}}</p>
     </mat-card-content>

@@ -25,6 +25,10 @@ export class ImageService {
     return this.http.get(IMAGE_API + bricksetId + '/image');
   }
 
+  getBricksetUserImage(bricksetId: number): Observable<any> {
+    return this.http.get(IMAGE_API + bricksetId + '/user-image');
+  }
+
   uploadBricksetImage(bricksetId: number, file: File): Observable<any> {
     const uploadData = new FormData();
     uploadData.append('file', file);

@@ -32,6 +32,7 @@ export class IndexComponent implements OnInit {
         console.log(data);
         this.bricksets = data;
         this.getImagesToBricksets(this.bricksets);
+        this.getUserImagesToBricksets(this.bricksets);
         this.getCommentsToBricksets(this.bricksets);
         this.isBricksetsLoaded = true;
       });
@@ -48,6 +49,18 @@ export class IndexComponent implements OnInit {
       this.imageService.getBricksetImage(b.id!)
         .subscribe(data => {
           b.image = data.imageBytes;
+        });
+    });
+  }
+
+  getUserImagesToBricksets(bricksets: Brickset[]): void {
+    bricksets.forEach(b => {
+      this.imageService.getBricksetUserImage(b.id!)
+        .subscribe(data => {
+          if (data.name != null) {
+            b.isUserImageLoaded = true;
+          }
+          b.userImage = data.imageBytes;
         });
     });
   }

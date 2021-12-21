@@ -33,6 +33,12 @@ public class ImageController {
         return ResponseEntity.ok(imageModel);
     }
 
+    @GetMapping("/{bricksetId}/user-image")
+    public ResponseEntity<ImageModel> getUserImageForBrickset(@PathVariable("bricksetId") String bricksetId) {
+        ImageModel imageModel = imageService.getBricksetUserImage(Long.parseLong(bricksetId));
+        return ResponseEntity.ok(imageModel);
+    }
+
     @PostMapping("/upload")
     public ResponseEntity<MessageResponse> uploadImageToUser(@RequestParam("file") MultipartFile file,
                                                              Principal principal) throws IOException {

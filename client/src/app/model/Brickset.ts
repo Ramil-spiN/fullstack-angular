@@ -10,4 +10,6 @@ export interface Brickset {
   likedUsers?: string[];
   comments?: Comment[];
   username?: string;
+  userImage?: File;
+  isUserImageLoaded?: boolean;
 }

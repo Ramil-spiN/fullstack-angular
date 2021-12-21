@@ -33,10 +33,10 @@ public class ImageService {
     private BricksetRepository bricksetRepository;
 
     @Autowired
-    public ImageService(ImageRepository imageRepository, UserRepository userRepository, BricksetRepository brocksetRepository) {
+    public ImageService(ImageRepository imageRepository, UserRepository userRepository, BricksetRepository bricksetRepository) {
         this.imageRepository = imageRepository;
         this.userRepository = userRepository;
-        this.bricksetRepository = brocksetRepository;
+        this.bricksetRepository = bricksetRepository;
     }
 
     public ImageModel getUserImage(Principal principal) {
@@ -51,6 +51,17 @@ public class ImageService {
     public ImageModel getBricksetImage(Long bricksetId) {
         ImageModel imageModel = imageRepository.findImageModelByBricksetId(bricksetId)//.orElse(null);
                 .orElseThrow(() -> new ImageNotFoundException("Image not found for brickset"));
+        if (!ObjectUtils.isEmpty(imageModel)) {
+            imageModel.setImageBytes(decompressBytes(imageModel.getImageBytes()));
+        }
+        return imageModel;
+    }
+
+    public ImageModel getBricksetUserImage(Long bricksetId) {
+        Brickset brickset = bricksetRepository.getById(bricksetId);
+
+        ImageModel imageModel = imageRepository.findImageModelByUserId(brickset.getUser().getId())//.orElse(null);
+                .orElseThrow(() -> new ImageNotFoundException("Image of user not found for brickset"));
         if (!ObjectUtils.isEmpty(imageModel)) {
             imageModel.setImageBytes(decompressBytes(imageModel.getImageBytes()));
         }
